@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0A1B22">
-    <meta name="description" content="Water for Twiga conçoit une solution solaire et souterraine pour sécuriser l'accès à l'eau potable en milieu rural.">
+    <meta name="description" content="Water for Twiga développe un système de filtration naturelle alimenté par énergie éolienne pour sécuriser l'accès à l'eau potable en milieu rural africain.">
     <title>Water for Twiga — Innovation pour l'eau rurale</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
         /* ===================================================
-           VARIABLES — palette « profondeur & soleil »
+           VARIABLES — palette « eau & vent & terre »
            =================================================== */
         :root {
             --ink: #0A1B22;
@@ -63,7 +63,7 @@
         .eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--sun); box-shadow: 0 0 0 4px rgba(232, 174, 73, .18); flex-shrink: 0; }
         .eyebrow.on-dark { color: var(--sun); }
 
-        /* --- Diviseur signature (ligne de « niveau du sol ») --- */
+        /* --- Diviseur signature --- */
         .rule { height: 1px; width: 64px; background: linear-gradient(90deg, var(--sun), transparent); margin: 0 0 22px; position: relative; }
         .rule::after { content: ''; position: absolute; left: 0; top: -2.5px; width: 6px; height: 6px; border-radius: 50%; background: var(--sun); }
 
@@ -171,12 +171,17 @@
             opacity: 0; animation: heroIn .9s var(--ease) .7s forwards;
         }
         .strip-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 26px; }
-        .strip-graphic { flex-shrink: 0; width: min(360px, 48vw); height: 60px; }
+        .strip-graphic { flex-shrink: 0; width: min(400px, 52vw); height: 64px; }
         .strip-caption { font-family: 'IBM Plex Mono', monospace; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(250, 246, 238, .6); }
-        .sun-dot { fill: var(--sun); filter: drop-shadow(0 0 6px rgba(232, 174, 73, .75)); transform-origin: center; animation: sunPulse 4.5s ease-in-out infinite; }
-        @keyframes sunPulse { 0%, 100% { opacity: .75; transform: scale(1); } 50% { opacity: 1; transform: scale(1.12); } }
-        .tank-water { fill: var(--water); animation: waterBob 3.2s ease-in-out infinite; transform-origin: center; }
-        @keyframes waterBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.4px); } }
+
+        /* Animation éolienne dans le strip */
+        .blade { transform-origin: 62px 30px; animation: spin 4s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .filter-layer { animation: filterPulse 3s ease-in-out infinite; }
+        @keyframes filterPulse { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+        .water-drop { fill: var(--water); animation: dropFall 2.4s ease-in-out infinite; }
+        @keyframes dropFall { 0%, 100% { transform: translateY(0); opacity: .8; } 50% { transform: translateY(3px); opacity: 1; } }
+
         @media (max-width: 680px) { .hero-strip { display: none; } .hero-content { margin-bottom: 0; } }
 
         /* ===================================================
@@ -192,7 +197,7 @@
         #livrables .section-header h2 { color: var(--paper); }
         #livrables .section-header p { color: rgba(250, 246, 238, .68); }
 
-        /* --- Cartes « carotte de sondage » --- */
+        /* --- Cartes --- */
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
         .card {
             position: relative; background: #fff; padding: 38px 30px 34px; border-radius: 6px;
@@ -208,6 +213,40 @@
         .card-icon { width: 40px; height: 40px; margin-bottom: 20px; color: var(--accent); }
         .card h3 { font-size: 1.3rem; margin-bottom: 12px; }
         .card p { font-size: .97rem; }
+
+        /* --- Section filtre multicouche --- */
+        .filter-section { margin-top: 70px; }
+        .filter-section-title { font-family: 'Fraunces', serif; font-size: clamp(1.5rem, 2.5vw, 2rem); margin-bottom: 10px; color: var(--ink); }
+        .filter-section-sub { font-size: .97rem; color: var(--stone); margin-bottom: 40px; max-width: 600px; }
+        .filter-layers { display: flex; flex-direction: column; gap: 14px; }
+        .filter-layer-card {
+            display: flex; align-items: flex-start; gap: 22px;
+            background: #fff; border-radius: 8px; padding: 24px 28px;
+            box-shadow: 0 8px 30px -14px rgba(10, 27, 34, .18);
+            border-left: 4px solid var(--layer-color, var(--water));
+            transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+        }
+        .filter-layer-card:hover { transform: translateX(6px); box-shadow: 0 16px 40px -16px rgba(10, 27, 34, .26); }
+        .filter-layer-card:nth-child(1) { --layer-color: #4CAF50; }
+        .filter-layer-card:nth-child(2) { --layer-color: var(--stone); }
+        .filter-layer-card:nth-child(3) { --layer-color: var(--ink); }
+        .filter-layer-card:nth-child(4) { --layer-color: var(--clay); }
+        .layer-number {
+            font-family: 'IBM Plex Mono', monospace; font-size: .78rem; font-weight: 600;
+            letter-spacing: .1em; color: var(--layer-color, var(--water));
+            background: color-mix(in srgb, var(--layer-color, var(--water)) 12%, transparent);
+            border-radius: 6px; padding: 6px 10px; white-space: nowrap; flex-shrink: 0;
+            border: 1px solid color-mix(in srgb, var(--layer-color, var(--water)) 25%, transparent);
+        }
+        .layer-info h4 { font-size: 1.05rem; margin-bottom: 6px; color: var(--ink); font-family: 'Fraunces', serif; }
+        .layer-info p { font-size: .93rem; color: var(--stone); margin: 0; }
+        .layer-tag {
+            margin-top: 8px; display: inline-flex; align-items: center;
+            font-family: 'IBM Plex Mono', monospace; font-size: .68rem; letter-spacing: .1em;
+            text-transform: uppercase; color: var(--layer-color, var(--water));
+            gap: 5px;
+        }
+        .layer-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--layer-color, var(--water)); flex-shrink: 0; }
 
         /* --- Galerie de prototypes --- */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
@@ -252,10 +291,36 @@
         .poster-box svg { width: 32px; height: 32px; opacity: .55; }
 
         /* --- Vidéo --- */
-        .video-frame { position: relative; max-width: 920px; margin: 0 auto; }
-        .video-frame::before { content: ''; position: absolute; inset: -2px; border-radius: 18px; background: linear-gradient(135deg, var(--water), var(--sun)); opacity: .45; filter: blur(16px); z-index: -1; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 14px; background: var(--ink); box-shadow: 0 30px 60px -26px rgba(10, 27, 34, .4); }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .video-frame { position: relative; max-width: 560px; margin: 0 auto; }
+        .video-link-card {
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+            background: linear-gradient(135deg, var(--ink) 0%, var(--water-deep) 100%);
+            border-radius: 18px; padding: 60px 40px;
+            box-shadow: 0 30px 60px -26px rgba(10, 27, 34, .4);
+            text-decoration: none; text-align: center;
+            transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+            position: relative; overflow: hidden;
+        }
+        .video-link-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 80% 20%, rgba(232,174,73,.18), transparent 60%); pointer-events: none; }
+        .video-link-card:hover { transform: translateY(-6px); box-shadow: 0 44px 80px -28px rgba(10, 27, 34, .5); }
+        .video-play-icon {
+            width: 76px; height: 76px; border-radius: 50%;
+            background: rgba(232,174,73,.15); border: 2px solid rgba(232,174,73,.5);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: background .3s, border-color .3s;
+        }
+        .video-link-card:hover .video-play-icon { background: rgba(232,174,73,.28); border-color: var(--sun); }
+        .video-play-icon svg { width: 30px; height: 30px; color: var(--sun); margin-left: 4px; }
+        .video-link-label { font-family: 'Fraunces', serif; font-size: 1.35rem; color: var(--paper); font-weight: 600; }
+        .video-link-sub { font-family: 'IBM Plex Mono', monospace; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(250,246,238,.5); margin-top: 4px; }
+        .video-open-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--sun); color: var(--ink); padding: 14px 30px; border-radius: 30px;
+            font-weight: 600; font-size: .92rem; text-decoration: none;
+            transition: transform .3s, box-shadow .3s, background .3s;
+            box-shadow: 0 10px 24px -8px rgba(232,174,73,.45);
+        }
+        .video-open-btn:hover { background: #f3c068; transform: translateY(-2px); box-shadow: 0 18px 32px -8px rgba(232,174,73,.55); }
 
         /* --- Équipe --- */
         .team-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 22px; }
@@ -308,6 +373,7 @@
             .section-container { padding: 64px 6% 72px; }
             .offer-card { padding: 44px 26px; }
             .upload-zone { padding: 40px 26px; }
+            .filter-layer-card { flex-direction: column; gap: 14px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -340,40 +406,64 @@
     </header>
     <div class="progress-bar" id="progressBar"></div>
 
+    <!-- ===================================================
+         PAGE ACCUEIL
+         =================================================== -->
     <div id="accueil" class="page-content active">
         <section class="hero">
             <div class="hero-content">
                 <span class="eyebrow on-dark">Innovation — accès rural à l'eau</span>
-                <h1>L'eau potable, partout,<br><em>durablement</em>.</h1>
-                <p>Nous réinventons l'accès à l'eau potable dans les territoires ruraux à ressources limitées. Une innovation technologique pensée pour l'impact local.</p>
+                <h1>Filtrer l'eau. Partout.<br><em>Naturellement.</em></h1>
+                <p>Nous développons un système de filtration multicouche alimenté par énergie éolienne, conçu pour les communautés rurales à ressources limitées. Des matériaux locaux, un impact durable.</p>
                 <button class="btn" onclick="navigate('solution')">Découvrir le projet</button>
             </div>
             <div class="hero-strip">
                 <div class="strip-inner">
-                    <svg class="strip-graphic" viewBox="0 0 360 60" aria-hidden="true">
-                        <circle class="sun-dot" cx="24" cy="16" r="7"></circle>
-                        <line x1="33" y1="20" x2="52" y2="27" stroke="rgba(250,246,238,.4)" stroke-width="1" stroke-dasharray="2 3"></line>
-                        <rect x="52" y="23" width="24" height="13" rx="1.5" fill="none" stroke="rgba(250,246,238,.55)" stroke-width="1.2"></rect>
-                        <line x1="56" y1="23" x2="65" y2="36" stroke="rgba(250,246,238,.32)" stroke-width="1"></line>
-                        <line x1="63" y1="23" x2="72" y2="36" stroke="rgba(250,246,238,.32)" stroke-width="1"></line>
-                        <line x1="0" y1="40" x2="360" y2="40" stroke="rgba(250,246,238,.18)" stroke-width="1"></line>
-                        <line x1="64" y1="36" x2="64" y2="44" stroke="rgba(250,246,238,.4)" stroke-width="1.2"></line>
-                        <rect x="52" y="44" width="24" height="12" rx="3" fill="none" stroke="rgba(250,246,238,.55)" stroke-width="1.2"></rect>
-                        <rect class="tank-water" x="54" y="48.5" width="20" height="5.5" rx="2"></rect>
+                    <!-- Infographie éolienne + filtration -->
+                    <svg class="strip-graphic" viewBox="0 0 420 64" aria-hidden="true">
+                        <!-- Mât éolienne -->
+                        <line x1="62" y1="56" x2="62" y2="20" stroke="rgba(250,246,238,.5)" stroke-width="2"></line>
+                        <!-- Nacelle -->
+                        <ellipse cx="62" cy="18" rx="6" ry="3.5" fill="rgba(250,246,238,.4)"></ellipse>
+                        <!-- Pales animées -->
+                        <g class="blade">
+                            <line x1="62" y1="14" x2="62" y2="2" stroke="rgba(250,246,238,.75)" stroke-width="2" stroke-linecap="round"></line>
+                            <line x1="62" y1="14" x2="51" y2="22" stroke="rgba(250,246,238,.75)" stroke-width="2" stroke-linecap="round"></line>
+                            <line x1="62" y1="14" x2="73" y2="22" stroke="rgba(250,246,238,.75)" stroke-width="2" stroke-linecap="round"></line>
+                        </g>
+                        <!-- Flèche vers filtre -->
+                        <path d="M74 36 L110 36" stroke="rgba(250,246,238,.35)" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arrowH)"></path>
+                        <defs>
+                            <marker id="arrowH" markerWidth="5" markerHeight="5" refX="5" refY="2.5" orient="auto">
+                                <path d="M0,0 L5,2.5 L0,5 Z" fill="rgba(250,246,238,.5)"></path>
+                            </marker>
+                        </defs>
+                        <!-- Filtre : 4 couches superposées -->
+                        <rect class="filter-layer" x="112" y="14" width="44" height="9" rx="1.5" fill="#4CAF5022" stroke="#4CAF50" stroke-width="1"></rect>
+                        <rect class="filter-layer" x="112" y="25" width="44" height="9" rx="1.5" fill="rgba(91,104,100,.18)" stroke="rgba(91,104,100,.7)" stroke-width="1" style="animation-delay:.3s"></rect>
+                        <rect class="filter-layer" x="112" y="36" width="44" height="9" rx="1.5" fill="rgba(10,27,34,.22)" stroke="rgba(10,27,34,.6)" stroke-width="1" style="animation-delay:.6s"></rect>
+                        <rect class="filter-layer" x="112" y="47" width="44" height="9" rx="1.5" fill="rgba(189,107,62,.18)" stroke="rgba(189,107,62,.7)" stroke-width="1" style="animation-delay:.9s"></rect>
+                        <!-- Goutte d'eau en sortie -->
+                        <path d="M182 36 L210 36" stroke="rgba(250,246,238,.35)" stroke-width="1" stroke-dasharray="3 3"></path>
+                        <circle class="water-drop" cx="222" cy="36" r="7"></circle>
+                        <path d="M222 29 Q218 33 218 36.5 Q218 40 222 41 Q226 40 226 36.5 Q226 33 222 29Z" fill="rgba(10,27,34,.0)" stroke="none"></path>
                     </svg>
-                    <p class="strip-caption">Captage solaire · Réserve souterraine · Eau protégée de l'évaporation</p>
+                    <p class="strip-caption">Énergie éolienne · Filtre 4 couches naturelles · Eau potabilisée</p>
                 </div>
             </div>
         </section>
     </div>
 
+    <!-- ===================================================
+         PAGE GALERIE
+         =================================================== -->
     <div id="galerie" class="page-content">
         <div class="section-container">
             <div class="section-header reveal">
                 <span class="eyebrow">Conception &amp; ingénierie</span>
-                <h2>Nos Prototypes de Châteaux d'Eau</h2>
+                <h2>Nos Prototypes de Filtres</h2>
                 <div class="rule"></div>
-                <p>Aperçu de nos conceptions architecturales et souterraines.</p>
+                <p>Aperçu de nos maquettes et systèmes de filtration multicouche à base de matériaux naturels.</p>
             </div>
             <div class="gallery-grid stagger">
                 <div class="gallery-item reveal" data-caption="Prototype 1"><img src="images/img1.png" alt="Prototype 1"></div>
@@ -384,15 +474,19 @@
         </div>
     </div>
 
+    <!-- ===================================================
+         PAGE SOLUTION
+         =================================================== -->
     <div id="solution" class="page-content">
         <div class="section-container">
             <div class="section-header reveal">
                 <span class="eyebrow">Notre approche</span>
                 <h2>Notre Proposition de Valeur</h2>
                 <div class="rule"></div>
-                <p>Conçue face aux contraintes des milieux ruraux, notre technologie allie faisabilité et viabilité.</p>
+                <p>Une solution de potabilisation pensée pour les contraintes rurales africaines : matériaux locaux, coût minimal, maintenance accessible à tous.</p>
             </div>
             <div class="grid-container stagger">
+                <!-- Carte 1 : Le défi -->
                 <div class="card reveal">
                     <span class="eyebrow">Le constat</span>
                     <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -401,20 +495,23 @@
                         <path d="M9 4c.4-.8.6-1.4.6-2" stroke-dasharray="1.6 1.8"></path>
                     </svg>
                     <h3>Le Défi</h3>
-                    <p>L'évaporation massive et les risques bactériologiques rendent l'accès à l'eau potable extrêmement complexe dans les zones rurales isolées.</p>
+                    <p>Des millions de personnes en zones rurales n'ont pas accès à une eau saine. Les solutions existantes sont trop coûteuses, trop complexes à maintenir ou dépendantes d'infrastructures absentes.</p>
                 </div>
+                <!-- Carte 2 : La technologie -->
                 <div class="card reveal accent-clay">
                     <span class="eyebrow">La réponse</span>
                     <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3.5" y="3" width="9" height="6" rx="1"></rect>
-                        <path d="M5.5 5.2l1.8 1.8M8.7 5.2l1.8 1.8"></path>
-                        <path d="M8 9v3.5"></path>
-                        <rect x="3.5" y="13.5" width="9" height="7.5" rx="2"></rect>
-                        <path d="M3.5 17.2h9" stroke-dasharray="1.4 1.6"></path>
+                        <!-- Icône éolienne stylisée -->
+                        <line x1="12" y1="22" x2="12" y2="13"></line>
+                        <circle cx="12" cy="12" r="1.5"></circle>
+                        <line x1="12" y1="10.5" x2="12" y2="4"></line>
+                        <line x1="10.7" y1="10.7" x2="5.5" y2="14.5"></line>
+                        <line x1="13.3" y1="10.7" x2="18.5" y2="14.5"></line>
                     </svg>
                     <h3>La Technologie</h3>
-                    <p>Un château d'eau souterrain innovant, alimenté par énergie solaire. Cette approche protège l'eau et assure une redistribution fiable.</p>
+                    <p>Un système de pompage éolien couplé à un filtre multicouche composé de matériaux naturels et locaux : graines de moringa, sable, charbon de noix de coco, argile et feuilles de neem.</p>
                 </div>
+                <!-- Carte 3 : L'impact -->
                 <div class="card reveal accent-sun">
                     <span class="eyebrow">L'impact</span>
                     <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -422,12 +519,83 @@
                         <path d="M8.8 12.2l2.1 2.1 4.2-4.6"></path>
                     </svg>
                     <h3>L'Impact</h3>
-                    <p>Une réduction drastique de l'évaporation et un système conçu dès l'origine pour être peu coûteux et réparable localement.</p>
+                    <p>Un accès durable à l'eau potable sans électricité réseau, sans pièces importées et sans formation spécialisée. Une solution reproductible dans toute l'Afrique subsaharienne rurale.</p>
+                </div>
+            </div>
+
+            <!-- Bloc détail filtre 4 couches -->
+            <div class="filter-section reveal">
+                <h3 class="filter-section-title">Le filtre multicouche — 4 tiroirs naturels</h3>
+                <p class="filter-section-sub">Chaque couche remplit une fonction précise, de la coagulation des particules à l'inhibition microbienne, en utilisant exclusivement des ressources disponibles localement.</p>
+                <div class="filter-layers stagger">
+                    <div class="filter-layer-card reveal">
+                        <span class="layer-number">TIROIR 01</span>
+                        <div class="layer-info">
+                            <h4>Graines de Moringa</h4>
+                            <p>Coagulant naturel qui favorise l'agglomération et l'élimination des grosses particules en suspension, lesquelles s'accumulent au fond du filtre avant de passer à la couche suivante.</p>
+                            <span class="layer-tag">Coagulation · Décantation</span>
+                        </div>
+                    </div>
+                    <div class="filter-layer-card reveal">
+                        <span class="layer-number">TIROIR 02</span>
+                        <div class="layer-info">
+                            <h4>Sable &amp; Quartz</h4>
+                            <p>Filtration mécanique des particules ayant floculé et des impuretés résiduelles. Le sable et le quartz assurent une rétention efficace des solides en suspension.</p>
+                            <span class="layer-tag">Filtration mécanique · Clarification</span>
+                        </div>
+                    </div>
+                    <div class="filter-layer-card reveal">
+                        <span class="layer-number">TIROIR 03</span>
+                        <div class="layer-info">
+                            <h4>Charbon Actif de Noix de Coco</h4>
+                            <p>Adsorption des substances chimiques indésirables, réduction des odeurs et amélioration du goût. Le charbon actif biosourcé offre une haute performance à faible coût de production local.</p>
+                            <span class="layer-tag">Adsorption · Décontamination chimique</span>
+                        </div>
+                    </div>
+                    <div class="filter-layer-card reveal">
+                        <span class="layer-number">TIROIR 04</span>
+                        <div class="layer-info">
+                            <h4>Argile · Sciure de Bois · Feuilles de Neem</h4>
+                            <p>Filtration finale avec des propriétés naturelles antifongiques, antibactériennes et antivirales apportées par le neem, limitant le développement des micro-organismes pathogènes dans l'eau filtrée.</p>
+                            <span class="layer-tag">Antibactérien · Antifongique · Antiviral</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Domaines scientifiques mobilisés -->
+            <div class="filter-section reveal" style="margin-top:56px;">
+                <h3 class="filter-section-title">Domaines scientifiques mobilisés</h3>
+                <p class="filter-section-sub">Notre approche est pluridisciplinaire, à la croisée de plusieurs champs de connaissance.</p>
+                <div class="grid-container stagger" style="margin-top:0;">
+                    <div class="card reveal" style="padding:26px 24px 22px;">
+                        <h3 style="font-size:1.05rem; margin-bottom:8px;">Hydraulique</h3>
+                        <p style="font-size:.9rem;">Compréhension de l'écoulement de l'eau à travers les différentes couches filtrantes et optimisation des débits.</p>
+                    </div>
+                    <div class="card reveal accent-clay" style="padding:26px 24px 22px;">
+                        <h3 style="font-size:1.05rem; margin-bottom:8px;">Chimie de l'eau</h3>
+                        <p style="font-size:.9rem;">Élimination des contaminants et amélioration des caractéristiques physico-chimiques pour atteindre les normes de potabilité.</p>
+                    </div>
+                    <div class="card reveal accent-sun" style="padding:26px 24px 22px;">
+                        <h3 style="font-size:1.05rem; margin-bottom:8px;">Microbiologie</h3>
+                        <p style="font-size:.9rem;">Réduction des bactéries et agents pathogènes grâce aux propriétés naturelles des matériaux biosourcés sélectionnés.</p>
+                    </div>
+                    <div class="card reveal" style="padding:26px 24px 22px;">
+                        <h3 style="font-size:1.05rem; margin-bottom:8px;">Science des matériaux</h3>
+                        <p style="font-size:.9rem;">Sélection et évaluation des performances des matériaux filtrants naturels en fonction du contexte environnemental local.</p>
+                    </div>
+                    <div class="card reveal accent-clay" style="padding:26px 24px 22px;">
+                        <h3 style="font-size:1.05rem; margin-bottom:8px;">Ingénierie environnementale</h3>
+                        <p style="font-size:.9rem;">Conception d'une solution durable, économique et adaptée aux contraintes des communautés rurales africaines.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- ===================================================
+         PAGE OFFRE
+         =================================================== -->
     <div id="offre" class="page-content">
         <div class="section-container">
             <div class="section-header reveal">
@@ -437,7 +605,7 @@
             </div>
             <div class="offer-card reveal">
                 <h3>Déployez la solution Twiga</h3>
-                <p>Nous proposons aux ONG, gouvernements et acteurs locaux une solution clé en main incluant l'étude de terrain, l'installation du château d'eau souterrain solaire et la formation des communautés à la maintenance.</p>
+                <p>Nous proposons aux ONG, gouvernements et acteurs locaux une solution clé en main incluant l'étude de terrain, la fabrication du système de filtration éolien avec des matériaux locaux, et la formation des communautés à la construction et à la maintenance du filtre multicouche.</p>
                 <div class="contact-msg">
                     "Si vous êtes intéressés par le déploiement de notre solution ou pour investir dans notre phase pilote, veuillez prendre contact avec notre équipe."
                 </div>
@@ -446,13 +614,16 @@
         </div>
     </div>
 
+    <!-- ===================================================
+         PAGE POSTERS
+         =================================================== -->
     <div id="posters" class="page-content">
         <div class="section-container">
             <div class="section-header reveal">
                 <span class="eyebrow">Supports de présentation</span>
                 <h2>Posters de Présentation</h2>
                 <div class="rule"></div>
-                <p>Supports visuels résumant notre démarche d'innovation.</p>
+                <p>Supports visuels résumant notre démarche d'innovation autour de la filtration éolienne naturelle.</p>
             </div>
             <div class="posters-grid stagger">
                 <div class="poster-box reveal">
@@ -471,22 +642,38 @@
         </div>
     </div>
 
+    <!-- ===================================================
+         PAGE VIDÉO
+         =================================================== -->
     <div id="video" class="page-content">
         <div class="section-container">
             <div class="section-header center reveal">
                 <span class="eyebrow">Présentation du projet</span>
                 <h2>Présentation Vidéo</h2>
                 <div class="rule"></div>
-                <p>Découvrez le fonctionnement de notre technologie en images.</p>
+                <p>Découvrez le fonctionnement de notre système de filtration éolien en images.</p>
             </div>
             <div class="video-frame reveal">
-                <div class="video-container">
-                    <iframe src="https://drive.google.com/file/d/1c2aa6xQlelEn-rLtyD1F21daj_y5XxXw/view?usp=sharing" title="Vidéo présentation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
+                <a href="https://drive.google.com/file/d/1c2aa6xQlelEn-rLtyD1F21daj_y5XxXw/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="video-link-card">
+                    <div class="video-play-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+                    </div>
+                    <div>
+                        <div class="video-link-label">Voir la vidéo de présentation</div>
+                        <div class="video-link-sub">Ouvre Google Drive dans un nouvel onglet</div>
+                    </div>
+                    <span class="video-open-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        Ouvrir la vidéo
+                    </span>
+                </a>
             </div>
         </div>
     </div>
 
+    <!-- ===================================================
+         PAGE ÉQUIPE
+         =================================================== -->
     <div id="equipe" class="page-content">
         <div class="section-container">
             <div class="section-header reveal">
@@ -507,6 +694,9 @@
         </div>
     </div>
 
+    <!-- ===================================================
+         PAGE LIVRABLES
+         =================================================== -->
     <div id="livrables" class="page-content">
         <div class="section-container">
             <div class="section-header center reveal">
@@ -521,7 +711,7 @@
                 </div>
                 <h3>Dépôt de nouveaux documents</h3>
                 <a href="https://drive.google.com/drive/folders/1LBZPM7bVrkoMHw9WniHg3eWXs4NEWaQH?usp=sharing" target="_blank" class="upload-btn">Accéder au dossier sécurisé</a>
-                <p class="note">Environnement de test - Les données techniques confidentielles ne sont pas exposées publiquement.</p>
+                <p class="note">Environnement de test — Les données techniques confidentielles ne sont pas exposées publiquement.</p>
             </div>
         </div>
     </div>
@@ -564,6 +754,14 @@
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
             requestAnimationFrame(updateProgress);
+
+            // Re-trigger reveal animations on page change
+            setTimeout(function () {
+                document.querySelectorAll('#' + pageId + ' .reveal').forEach(function (el) {
+                    el.classList.remove('is-visible');
+                    observer.observe(el);
+                });
+            }, 50);
         }
 
         function toggleMenu() {
@@ -582,12 +780,16 @@
         window.addEventListener('scroll', updateProgress, { passive: true });
         window.addEventListener('resize', updateProgress);
 
+        var observer;
         if ('IntersectionObserver' in window) {
-            var observer = new IntersectionObserver(function (entries) {
+            observer = new IntersectionObserver(function (entries) {
                 entries.forEach(function (entry) {
-                    entry.target.classList.toggle('is-visible', entry.isIntersecting);
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
                 });
-            }, { threshold: 0.15 });
+            }, { threshold: 0.12 });
             document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
         } else {
             document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
