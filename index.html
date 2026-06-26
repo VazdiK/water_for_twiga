@@ -625,39 +625,40 @@
                         <!-- sol -->
                         <line x1="0" y1="286" x2="740" y2="286" stroke="#cdd9d8" stroke-width="2"/>
 
-                        <!-- éolienne -->
-                        <line x1="96" y1="286" x2="96" y2="100" stroke="#6b7c7c" stroke-width="5" stroke-linecap="round"/>
-                        <ellipse cx="96" cy="97" rx="7" ry="4" fill="#6b7c7c"/>
-                        <g>
-                            <line x1="96" y1="94" x2="96" y2="62" stroke="#0E7C8B" stroke-width="4.5" stroke-linecap="round"/>
-                            <line x1="96" y1="94" x2="68" y2="110" stroke="#0E7C8B" stroke-width="4.5" stroke-linecap="round"/>
-                            <line x1="96" y1="94" x2="124" y2="110" stroke="#0E7C8B" stroke-width="4.5" stroke-linecap="round"/>
-                            <circle cx="96" cy="94" r="3.6" fill="#06222B"/>
-                            <animateTransform attributeName="transform" type="rotate" from="0 96 94" to="360 96 94" dur="6s" repeatCount="indefinite"/>
-                        </g>
-                        <text x="96" y="308" font-family="'IBM Plex Mono', monospace" font-size="11" letter-spacing="1.4" fill="#56696A" text-anchor="middle">ÉOLIENNE</text>
-
                         <!-- puits -->
-                        <rect x="122" y="262" width="62" height="24" rx="3" fill="#e3f1f0" stroke="#bcd6d4" stroke-width="1.5"/>
-                        <rect x="125" y="265" width="56" height="8" rx="2" fill="#9fd9da"/>
+                        <rect x="70" y="258" width="72" height="28" rx="3" fill="#e3f1f0" stroke="#bcd6d4" stroke-width="1.5"/>
+                        <rect x="74" y="262" width="64" height="9" rx="2" fill="#9fd9da"/>
+                        <text x="106" y="308" font-family="'IBM Plex Mono', monospace" font-size="11" letter-spacing="1.4" fill="#56696A" text-anchor="middle">PUITS</text>
 
-                        <!-- conduite de pompage : puits -> haut -> château -->
-                        <path d="M153,262 V84 H332" fill="none" stroke="#d3edec" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M153,262 V84 H332" fill="none" stroke="#0E7C8B" stroke-width="3" stroke-linecap="round" class="flow" marker-end="url(#ah)"/>
+                        <!-- conduite de pompage : puits -> haut -> dessus de la cuve -->
+                        <path d="M106,258 V92 H276 V120" fill="none" stroke="#d3edec" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M106,258 V92 H276 V120" fill="none" stroke="#0E7C8B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="flow" marker-end="url(#ah)"/>
 
                         <!-- château d'eau -->
-                        <line x1="348" y1="170" x2="338" y2="286" stroke="#6b7c7c" stroke-width="4" stroke-linecap="round"/>
-                        <line x1="432" y1="170" x2="442" y2="286" stroke="#6b7c7c" stroke-width="4" stroke-linecap="round"/>
-                        <line x1="348" y1="200" x2="432" y2="244" stroke="#9fb0b0" stroke-width="2"/>
-                        <line x1="432" y1="200" x2="348" y2="244" stroke="#9fb0b0" stroke-width="2"/>
-                        <rect x="336" y="86" width="108" height="86" rx="11" fill="#eef9f9" stroke="#bcd6d4" stroke-width="2"/>
-                        <path d="M336,98 Q390,74 444,98" fill="#dff0ef" stroke="#bcd6d4" stroke-width="2"/>
-                        <rect x="342" y="116" width="96" height="50" rx="6" fill="url(#tankw)" opacity=".92"/>
-                        <text x="390" y="308" font-family="'IBM Plex Mono', monospace" font-size="11" letter-spacing="1.4" fill="#56696A" text-anchor="middle">CHÂTEAU D'EAU</text>
+                        <line x1="250" y1="196" x2="236" y2="286" stroke="#6b7c7c" stroke-width="4" stroke-linecap="round"/>
+                        <line x1="358" y1="196" x2="372" y2="286" stroke="#6b7c7c" stroke-width="4" stroke-linecap="round"/>
+                        <line x1="250" y1="224" x2="358" y2="262" stroke="#9fb0b0" stroke-width="2"/>
+                        <line x1="358" y1="224" x2="250" y2="262" stroke="#9fb0b0" stroke-width="2"/>
+                        <rect x="250" y="120" width="108" height="80" rx="11" fill="#eef9f9" stroke="#bcd6d4" stroke-width="2"/>
+                        <path d="M250,132 Q304,108 358,132" fill="#dff0ef" stroke="#bcd6d4" stroke-width="2"/>
+                        <rect x="256" y="148" width="96" height="46" rx="6" fill="url(#tankw)" opacity=".92"/>
+                        <text x="304" y="308" font-family="'IBM Plex Mono', monospace" font-size="11" letter-spacing="1.4" fill="#56696A" text-anchor="middle">CHÂTEAU D'EAU</text>
+
+                        <!-- éolienne montée sur le château d'eau -->
+                        <line x1="304" y1="118" x2="304" y2="60" stroke="#6b7c7c" stroke-width="5" stroke-linecap="round"/>
+                        <ellipse cx="304" cy="58" rx="7" ry="4" fill="#6b7c7c"/>
+                        <g>
+                            <line x1="304" y1="55" x2="304" y2="24" stroke="#0E7C8B" stroke-width="4.5" stroke-linecap="round"/>
+                            <line x1="304" y1="55" x2="277" y2="71" stroke="#0E7C8B" stroke-width="4.5" stroke-linecap="round"/>
+                            <line x1="304" y1="55" x2="331" y2="71" stroke="#0E7C8B" stroke-width="4.5" stroke-linecap="round"/>
+                            <circle cx="304" cy="55" r="3.6" fill="#06222B"/>
+                            <animateTransform attributeName="transform" type="rotate" from="0 304 55" to="360 304 55" dur="6s" repeatCount="indefinite"/>
+                        </g>
+                        <text x="304" y="14" font-family="'IBM Plex Mono', monospace" font-size="11" letter-spacing="1.4" fill="#0E7C8B" text-anchor="middle" font-weight="600">ÉOLIENNE</text>
 
                         <!-- conduite château -> filtre (descente) -->
-                        <path d="M444,150 C502,150 516,116 552,113" fill="none" stroke="#d3edec" stroke-width="8" stroke-linecap="round"/>
-                        <path d="M444,150 C502,150 516,116 552,113" fill="none" stroke="#0E7C8B" stroke-width="3" stroke-linecap="round" class="flow" marker-end="url(#ah)"/>
+                        <path d="M358,168 C440,168 470,118 552,113" fill="none" stroke="#d3edec" stroke-width="8" stroke-linecap="round"/>
+                        <path d="M358,168 C440,168 470,118 552,113" fill="none" stroke="#0E7C8B" stroke-width="3" stroke-linecap="round" class="flow" marker-end="url(#ah)"/>
 
                         <!-- filtre Ô-NEEM -->
                         <rect x="556" y="104" width="26" height="9" rx="3" fill="#6b7c7c"/>
@@ -919,7 +920,7 @@
             </div>
             <div class="poster-wrap reveal">
                 <div class="poster-frame" onclick="openLightbox()">
-                    <img src="O_neem.png" alt="Affiche du produit Ô-NEEM — composition du filtre, points forts et applications" class="poster-img" onclick="openLightbox(this.src)">
+                    <img src="images/O_neem.png" alt="Affiche du produit Ô-NEEM — composition du filtre, points forts et applications" class="poster-img" onclick="openLightbox(this.src)">
                 </div>
                 <p class="poster-caption">Ô-NEEM — L'eau pure, naturellement & autonome · Water for Twiga</p>
             </div>
@@ -999,7 +1000,7 @@
     <!-- Lightbox affiche -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <button class="lb-close" aria-label="Fermer">×</button>
-        <img src="O_neem.png" alt="Affiche du produit Ô-NEEM — composition du filtre, points forts et applications" class="poster-img" onclick="openLightbox(this.src)">
+        <img src="images/O_neem.png" alt="Affiche du produit Ô-NEEM — composition du filtre, points forts et applications" class="poster-img" onclick="openLightbox(this.src)">
     </div>
     <script>
         /* ---------- Navigation SPA ---------- */
